@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class ="containerblack">
+      <h1>Restaurant Dapp</h1> 
+      <div>
+      <div class = "containeryellow">
+        <section>
+         <div class = "containerred">
+         <p>Click on the items to select your food on right</p>
+         <ul>
+            <li class="pasta dark">Pasta...................................................................................................................................................... <em>15000</em> Wei</li>
+            <li class="rice dark">Rice.......................................................................................................................................................... <em>5000</em> Wei</li>
+            <li class="butter dark">Butter Chicken Masala............................................................................................................................ <em>1000</em> Wei</li>
+            <li class="paneer dark">Paneer Butter Masala.............................................................................................................................. <em>2000</em> Wei</li>
+            <li class="fried dark">Fried Potatoes.......................................................................................................................................... <em>6000</em> Wei </li>
+            <li class="french dark">French Fries............................................................................................................................................... <em>200</em> Wei </li>
+            <li class="chicken dark">Chicken Breast with Brown Rice............................................................................................................ <em>3000</em> Wei </li>
+            <li class="tuna dark">Tuna Fish................................................................................................................................................ <em>1000</em> Wei </li>
+            <li class="boiled dark">Boiled Eggs............................................................................................................................................ <em>2000</em> Wei </li>
+            <li class="beef dark">Beef......................................................................................................................................................... <em>4000</em> Wei </li>
+            <li class="lady dark">Ladyfinger............................................................................................................................................... <em>5000</em> Wei </li>
+            <li class="salad dark">Salad........................................................................................................................................................ <em>3000</em> Wei </li>
+            <li class="pizza dark">Pizza.......................................................................................................................................................... <em>200</em> Wei </li>
+          
+        
+          </ul>
+         </div>
+        <div class = "containerblue">
+            <p>Your total Calculated in the Bill Portion of Tip Calculator</p>
+          <ul>
+            <li class="pasta1 hidden">Pasta...................................................................................................................................................... <em>15000</em> Wei</li>
+            <li class="rice1 hidden">Rice.......................................................................................................................................................... <em>5000</em> Wei</li>
+            <li class="butter1 hidden">Butter Chicken Masala............................................................................................................................ <em>1000</em> Wei</li>
+            <li class="paneer1 hidden">Paneer Butter Masala.............................................................................................................................. <em>2000</em> Wei</li>
+            <li class="fried1 hidden">Fried Potatoes.......................................................................................................................................... <em>6000</em> Wei </li>
+            <li class="french1 hidden">French Fries............................................................................................................................................... <em>200</em> Wei </li>
+            <li class="chicken1 hidden">Chicken Breast with Brown Rice............................................................................................................ <em>3000</em> Wei </li>
+            <li class="tuna1 hidden">Tuna Fish................................................................................................................................................ <em>1000</em> Wei </li>
+            <li class="boiled1 hidden">Boiled Eggs............................................................................................................................................ <em>2000</em> Wei </li>
+            <li class="beef1 hidden">Beef......................................................................................................................................................... <em>4000</em> Wei </li>
+            <li class="lady1 hidden">Ladyfinger............................................................................................................................................... <em>5000</em> Wei </li>
+            <li class="salad1 hidden">Salad........................................................................................................................................................ <em>3000</em> Wei </li>
+            <li class="pizza1 hidden">Pizza.......................................................................................................................................................... <em>200</em> Wei </li>
+          
+        
+          </ul>
+        </div>
+        </section>  
+        </div>
+      <div>  
+          <section>
+      <div class="containergreen">
+        <div class = "containerorange">
+          <h2>Tip calculator</h2>
+          <form action="">
+            <div >
+              <label for="" class = "fontSize">Bill:</label>
+              <input type="text" class="bill" placeholder="$" />
+            </div>
+
+            
+            <div class = "designRate">
+              <label for="">Rate service:</label>
+              <select name="" class="rate">
+                <option disabled selected value="0">
+                  --select an option--
+                </option>
+                <option value="0.25">25% - Excellent</option>
+                <option value="0.2">20% - Good</option>
+                <option value="0.15">15% - Fair</option>
+              </select>
+            </div>
+
+            
+            <button type="button" class="btn">Calculate</button>
+            <p class="error">Please enter bill and rate service</p>
+          </form>
+
+          <div class="result">
+            <p class="tip">Tip amount: $0</p>
+            <p class="total">Total amount: $0</p>
+          </div>
+
+        </div>
+        <div class = "containerviolet">
+            <p>Total Amount to be paid by you </p>
+        
+          <input type="number" id="price">
+          <button onclick= "amountToPay()">Pay Now</button>
+         <div class="thankyou">
+             <p>Keep Revisiting <br>
+                <br>
+                <br>
+                <br>
+      Glad to be part of your Happiness</p>
+         </div>
+        </div>
+      </div>
+    </section>
+        </div>
+    </div>
+      <script charset="utf-8"
+        src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+        type="text/javascript">
+      </script>
+
+      <script>
+
+         const price= document.getElementById("price").value;
+         const finalPrice = price/1000;
+         
+      window.ethereum.enable();
+        var provider = new ethers.providers.Web3Provider(
+        web3.currentProvider,
+        "ropsten"
+);
+        var dappContractAddress = "0xB3FAB99a4AaF411038aB86FC2fEBf88E8f9f90d3";
+  var dappContractABI = [
+	{
+		"inputs": [],
+		"name": "amountToPay",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAmount",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getBalancesIndividually",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getOwnerBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+  var dappContract
+  var signer
+
+     provider.listAccounts().then(function (accounts) {
+  signer = provider.getSigner(accounts[0]);
+  dappContract = new ethers.Contract(
+    dappContractAddress,
+    dappContractABI,
+    signer
+  );
+})
+        async function getBalancesIndividually(){
+  indiPaymentPromise = dappContract.getBalancesIndividually();
+  var Amount = await indiPaymentPromise.wait();
+  console.log(Amount);
+}
+
+async function amountToPay() {
+    console.log(finalPrice)
+    const option = {value:ethers.utils.parseEther(finalPrice.toString())}
+    console.log(option)
+    
+ let userPayPromise = dappContract.amountToPay(option);
+  await userPayPromise.wait()
+}
+
+
+let amount = 0;
+let totalBill = 0;
+for(let i=0; i<13 ; i++){
+    document.querySelectorAll("li")[i].addEventListener("click",(event) =>{
+    let text = event.target.classList[0] + "1";
+    event.target.classList.toggle("dark")
+    document.querySelector("." + text).classList.toggle("hidden");
+    let currentPrice = event.target.querySelector("em").innerText;
+    amount = amount + parseInt(currentPrice);
+    if(event.target.classList[1] == "dark")
+      amount = amount - (2 * parseInt(currentPrice));
+    document.querySelector(".bill").value = amount;
+    });
+}
+
+
+
+const btn = document.querySelector(".btn")
+const error = document.querySelector(".error")
+const tip = document.querySelector(".tip")
+const total = document.querySelector(".total")
+
+btn.addEventListener("click", calculateTip)
+
+
+// .toString()
+// setTimeout(func, time(in ms))
+
+function hideError() {
+  setTimeout(() => {
+    error.style.display = "none"
+  }, 3000)
+}
+  const priceToPay =document.querySelector("#price")
+
+function calculateTip() {
+  const tip = document.querySelector(".tip")
+  const bill = document.querySelector(".bill").value
+  console.log(bill)
+  const rate = document.querySelector(".rate").value
+  console.log(rate)
+
+  if (bill === "" || rate == "") {
+    error.style.display = "block"
+    hideError()
+  } 
+  else if (isNaN(bill)) { // it is a function that checks if the input is Not a Number --> boolean
+    error.innerHTML = "Please enter a Number!"
+    error.style.display = "block"
+    hideError()
+  }
+  else {
+    let tipAmount = Math.round(bill * rate)
+    tip.innerHTML = `Tip Amount: ${tipAmount}`
+    totalBill = Number(bill) + tipAmount
+    total.innerHTML = `Total Amount: ${totalBill}`
+    priceToPay.value= totalBill
+    
+  }
+}
+
+   
+        
+     </script>
+  </body>
+</html>
